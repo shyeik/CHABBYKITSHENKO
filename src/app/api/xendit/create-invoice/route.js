@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-const XENDIT_SECRET_KEY =
-  "xnd_production_wFB9yDK19mowAUqyJzDW7SnRjiLpRl2DehXN2uUMXJ3SHE1I0jbMG8BMqydYpjV";
-
 // 👇 Only include this in server-side code — NEVER expose to client
 export async function POST(req) {
   try {
@@ -25,13 +22,15 @@ export async function POST(req) {
         payer_email: email,
         description: `Payment for Order ${orderId}`,
         currency: "PHP",
-        success_redirect_url: "http://localhost:3000/dashboard?status=success",
-        failure_redirect_url: "http://localhost:3000/dashboard?status=failed",
+        success_redirect_url:
+          "https://chabby-eosin.vercel.app/dashboard?status=success",
+        failure_redirect_url:
+          "https://chabby-eosin.vercel.app//dashboard?status=failed",
         metadata: { order_id: orderId, remarks },
       },
       {
         auth: {
-          username: XENDIT_SECRET_KEY,
+          username: process.env.XENDIT_SECRET_KEY,
           password: "", // password must be empty string per Xendit docs
         },
       }
