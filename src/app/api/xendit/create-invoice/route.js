@@ -23,9 +23,9 @@ export async function POST(req) {
         description: `Payment for Order ${orderId}`,
         currency: "PHP",
         success_redirect_url:
-          "https://chabby-eosin.vercel.app/dashboard?status=success",
+          "https://chabby-pay.vercel.app/dashboard?status=success",
         failure_redirect_url:
-          "https://chabby-eosin.vercel.app//dashboard?status=failed",
+          "https://chabby-pay.vercel.app//dashboard?status=failed",
         metadata: { order_id: orderId, remarks },
       },
       {
